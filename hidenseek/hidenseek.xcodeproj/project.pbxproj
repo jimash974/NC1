@@ -13,6 +13,7 @@
 		584A12542A1B072600E34CA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 584A12522A1B072600E34CA1 /* Main.storyboard */; };
 		584A12562A1B072700E34CA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584A12552A1B072700E34CA1 /* Assets.xcassets */; };
 		584A12592A1B072700E34CA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 584A12572A1B072700E34CA1 /* LaunchScreen.storyboard */; };
+		589787032A1C251900C52AC8 /* VectorOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589787022A1C251900C52AC8 /* VectorOperations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		584A12532A1B072600E34CA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		584A12552A1B072700E34CA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		584A12582A1B072700E34CA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		589787022A1C251900C52AC8 /* VectorOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorOperations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 		584A124B2A1B072600E34CA1 /* hidenseek */ = {
 			isa = PBXGroup;
 			children = (
+				589787022A1C251900C52AC8 /* VectorOperations.swift */,
 				584A124C2A1B072600E34CA1 /* AppDelegate.swift */,
 				584A124E2A1B072600E34CA1 /* art.scnassets */,
 				584A12502A1B072600E34CA1 /* GameViewController.swift */,
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				589787032A1C251900C52AC8 /* VectorOperations.swift in Sources */,
 				584A12512A1B072600E34CA1 /* GameViewController.swift in Sources */,
 				584A124D2A1B072600E34CA1 /* AppDelegate.swift in Sources */,
 			);
