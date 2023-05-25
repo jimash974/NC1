@@ -7,6 +7,7 @@
 
 import UIKit
 import SceneKit
+import SpriteKit
 
 class GameViewController: UIViewController {
     
@@ -26,7 +27,7 @@ class GameViewController: UIViewController {
 //    ghost node
     var ghost:SCNNode!
     
-    var score:Int = 0
+//    var score:Int = 0
     
     var ghostScary: SCNNode!
     
@@ -34,26 +35,70 @@ class GameViewController: UIViewController {
     
     var health:Int = 3
     
-    private var scoreLabel: UILabel!
-    private var lifeLabel: UILabel!
+//    private var scoreLabel: UILabel!
+    var lifeLabel: UILabel!
+    var healthLabel: SKLabelNode!
+
+    
+    var scoreLabel = SKLabelNode(text: "Score: 0")
+    var score = 0
+//    {
+//        didSet {
+            // Update the score label text
+//            scoreLabel.text = "Score: \(score)"
+//        }
+//    }
+    
+    var endText: SCNNode!
+
+    var isFirstCollision = true
+    
+    var playAgainButton: UIButton!
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated: true)
+
         setUpScene()
         setUpNodes()
         setupSounds()
         sceneView.delegate = self
 //        scene.physicsWorld.contactDelegate = self
+        setUpLabel()
+    }
 
+    
+    func setUpLabel(){
+        // Create a SpriteKit overlay for UI elements
+        let overlayScene = SKScene(size: sceneView.bounds.size)
+        sceneView.overlaySKScene = overlayScene
 
+        // Create a score label
+        scoreLabel.fontSize = 24
+        scoreLabel.fontColor = UIColor.white
+        scoreLabel.horizontalAlignmentMode = .left
+        scoreLabel.verticalAlignmentMode = .top
+        scoreLabel.position = CGPoint(x: 17, y: sceneView.bounds.height - 10)
+        overlayScene.addChild(scoreLabel)
+        scoreLabel.text = "Score: \(score)/10"
         
-
+        // Create the health label
+        healthLabel = SKLabelNode(text: "Health: \(health)")
+        healthLabel.fontSize = 24
+        healthLabel.fontColor = UIColor.white
+        healthLabel.horizontalAlignmentMode = .right
+        healthLabel.verticalAlignmentMode = .top
+        healthLabel.position = CGPoint(x: sceneView.bounds.width - 20, y: sceneView.bounds.height - 10)
+        overlayScene.addChild(healthLabel)
     }
     
     func setUpScene(){
         sceneView = self.view as! SCNView
         
         sceneView.allowsCameraControl = true
+        sceneView.cameraControlConfiguration.rotationSensitivity = 0.6
 
         scene = SCNScene(named: "art.scnassets/mainScene.scn")
         scene.lightingEnvironment.intensity = -1.5
@@ -68,32 +113,10 @@ class GameViewController: UIViewController {
         sceneView.addGestureRecognizer(tapRecognizer)
         
         scene.physicsWorld.contactDelegate = self
-        
 //        sceneView.debugOptions = [.showPhysicsShapes]
         
-        // Create the score label
-        scoreLabel = UILabel(frame: CGRect(x: view.bounds.width - 100, y: 20, width: 80, height: 30))
-//        scoreLabel.textAlignment =
-        scoreLabel.textColor = UIColor.white
-        scoreLabel.font = UIFont.systemFont(ofSize: 18)
-        view.addSubview(scoreLabel)
-        
-        // Add constraints to position the score label in the top left corner
-          let constraints = [
-              scoreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-              scoreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
-          ]
-          NSLayoutConstraint.activate(constraints)
 
-//        lifeLabel = UILabel(frame: CGRect(x: view.bounds.width - 100, y: 20, width: 80, height: 30))
-//        lifeLabel.textAlignment = .left
-//        lifeLabel.textColor = UIColor.white
-//        lifeLabel.font = UIFont.systemFont(ofSize: 18)
-//        view.addSubview(lifeLabel)
-//
-//
-//        lifeLabel.text = "Your life : \(life)"
-        scoreLabel.text = "\(score)/5"
+        
 
 
     }
@@ -104,6 +127,9 @@ class GameViewController: UIViewController {
         ghost = scene.rootNode.childNode(withName: "ghost reference", recursively: true)
         ghostScary = scene.rootNode.childNode(withName: "ghostScary reference", recursively: true)
         ghostScary.isHidden = true
+        endText = scene.rootNode.childNode(withName: "endText", recursively: true)
+        endText.isHidden = true
+        
     }
     
     func setupSounds() {
@@ -115,13 +141,13 @@ class GameViewController: UIViewController {
         
         sounds["scream"] = screamSound
         
-//        let backgroundMusic = SCNAudioSource(fileNamed: "BackgroundMusic.wav")!
-//        backgroundMusic.volume = 1.5
-//        backgroundMusic.loops = true
-//        backgroundMusic.load()
-//
-//        let musicPlayer = SCNAudioPlayer(source: backgroundMusic)
-//        scene.rootNode.addAudioPlayer(musicPlayer)
+        let backgroundMusic = SCNAudioSource(fileNamed: "BackgroundMusic.wav")!
+        backgroundMusic.volume = 1.5
+        backgroundMusic.loops = true
+        backgroundMusic.load()
+
+        let musicPlayer = SCNAudioPlayer(source: backgroundMusic)
+        scene.rootNode.addAudioPlayer(musicPlayer)
 
     }
     
@@ -134,21 +160,31 @@ class GameViewController: UIViewController {
             let result = hitResults.first
             if let node = result?.node{
 //                print("\(node.parent?.name)")
-                print("Ghost name \(ghost.parent?.name)")
-                print("Ghost \(ghost.parent?.position)")
+//                print("Ghost name \(ghost.parent?.name)")
+//                print("Ghost \(ghost.parent?.position)")
+                print("Score : \(score)")
 
 //                print("Physicsc \(ghost?.physicsBody)")
 
-                
                 if node.parent?.name == "skin0"{
 //                    write the code here
                     print("Score \(score)")
                     node.parent?.isHidden = true
                     score += 1
-                    scoreLabel.text = "\(score)/5"
+                    scoreLabel.text = "\(score)/10"
                 }
             }
         }
+    }
+    
+    @objc func playAgainButtonPressed() {
+        // Code to restart or reset your game
+        // For example, you can reset game variables and reload the game scene
+        print("restart")
+        setUpScene()
+        setUpNodes()
+        score = 0
+        health = 3
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -167,12 +203,56 @@ extension GameViewController: SCNSceneRendererDelegate {
         spotLightNode.orientation = pov.orientation
         spotLightNode.eulerAngles = pov.eulerAngles
         
-        if score == 5 {
-            print("YOU WIN")
+        if score == 1 {
+//            endText.isHidden = false
+//            endGameNotif.send(true)
+//            print("win")
+            playAgainButton = UIButton(type: .system)
+            playAgainButton.setTitle("Play Again", for: .normal)
+            playAgainButton.setTitleColor(.white, for: .normal)
+            playAgainButton.backgroundColor = UIColor.gray
+            playAgainButton.layer.opacity = 0.8
+            playAgainButton.addTarget(self, action: #selector(playAgainButtonPressed), for: .touchUpInside)
+            playAgainButton.frame = CGRect(x: 390, y: 300, width: 100, height: 40)
+            self.view.addSubview(playAgainButton)
+            
+            // Create a 3D text geometry
+            let textGeometry = SCNText(string: "You Win", extrusionDepth: 1.0)
+
+            // Customize the text geometry properties as desired
+            textGeometry.font = UIFont.systemFont(ofSize: 0.5) // Adjust the font and size
+            textGeometry.flatness = 0.1 // Adjust the flatness
+            textGeometry.firstMaterial?.diffuse.contents = UIColor.white // Adjust the color
+
+            // Create a node using the text geometry
+            let textNode = SCNNode(geometry: textGeometry)
+
+            // Set the position of the text node
+            textNode.position = SCNVector3(x: -1.053, y: -1.2, z: -6)
+            spotLightNode.addChildNode(textNode)
+        
+            ghost.physicsBody = .none
         }
         
         if health <= 0 {
-            print("You LOST")
+//            print("win")
+            
+            // Create a 3D text geometry
+            let textGeometry = SCNText(string: "You Lose", extrusionDepth: 1.0)
+
+            // Customize the text geometry properties as desired
+            textGeometry.font = UIFont.systemFont(ofSize: 0.5) // Adjust the font and size
+            textGeometry.flatness = 0.1 // Adjust the flatness
+            textGeometry.firstMaterial?.diffuse.contents = UIColor.white // Adjust the color
+
+            // Create a node using the text geometry
+            let textNode = SCNNode(geometry: textGeometry)
+
+            // Set the position of the text node
+            textNode.position = SCNVector3(x: -1.053, y: -1.2, z: -6)
+            spotLightNode.addChildNode(textNode)
+            
+            ghost.physicsBody = .none
         }
     }
 }
@@ -198,7 +278,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
 
             
 //        if(nodeA.childNodes[0].name == "ghost" || nodeB.name == "ghost"){
-        if(nodeA.name == "ghost reference" || nodeB.name == "ghost reference"){
+        if((nodeA.name == "ghost reference" || nodeB.name == "ghost reference") && isFirstCollision){
             print("in")
             if nodeA.name == "ghost reference"{
                 ghostNode = nodeA.parent
@@ -223,38 +303,37 @@ extension GameViewController : SCNPhysicsContactDelegate {
 //                print("Ghost hidden \(ghostScary.isHidden)")
 
             }else if ghostNode?.position.z == -4{
-                x = -3
+                x = 5
 //                let moveAction = SCNAction.move(to: SCNVector3(x: -3, y: 0, z: 0), duration: 0)
 //                let action = SCNAction.sequence([waitAction,moveAction])
 //                ghostNode?.runAction(action)
 
-            }else if ghostNode?.position.x == -3{
-                x = 5
+            }else if ghostNode?.position.x == 5{
 //                let moveAction = SCNAction.move(to: SCNVector3(x: 5, y: 0, z: 0), duration: 0)
 //                let action = SCNAction.sequence([waitAction,moveAction])
 //                ghostNode?.runAction(action)
+                x = -3
 
-            }else if ghostNode?.position.x == 5{
+            }else if ghostNode?.position.x == -3{
                 z = 4
 //                let moveAction = SCNAction.move(to: SCNVector3(x: 0, y: 0, z: 4), duration: 0)
 //                let action = SCNAction.sequence([waitAction,moveAction])
 //                ghostNode?.runAction(action)
             }
             
-            let waitAction = SCNAction.wait(duration: 3)
+            let changeCatMask = SCNAction.run { node in
+                node.categoryBitMask = 0
+            }
+            let changeBackCatMask = SCNAction.run { node in
+                node.categoryBitMask = 2
+            }
             let moveAction = SCNAction.move(to: SCNVector3(x: x, y: 0, z: z), duration: 0)
-            let action = SCNAction.sequence([moveAction])
+            let action = SCNAction.sequence([changeCatMask,moveAction,changeBackCatMask])
             ghostNode?.runAction(action)
 
             let unhideAction = SCNAction.run { (node) in
                 node.isHidden = false
             }
-//            let hidePhysicsc = SCNAction.run { node in
-//                node.childNodes[0].categoryBitMask = 1
-//            }
-//            let showPhysicsc = SCNAction.run { node in
-//                node.childNodes[0].categoryBitMask = 2
-//            }
             
             let sawSound = sounds["scream"]!
             sceneView.scene?.rootNode.runAction(SCNAction.playAudio(sawSound, waitForCompletion: false))
@@ -263,11 +342,26 @@ extension GameViewController : SCNPhysicsContactDelegate {
                 node.isHidden = true
             }
             
+            let waitAction = SCNAction.wait(duration: 2)
+
             let ghostScaryAction = SCNAction.sequence([unhideAction, waitAction, hideAction])
             ghostScary.runAction(ghostScaryAction)
             
-            health -= 1
+            print("collide position \(ghostNode?.position)")
+            
+            if(health > 0){
+                health -= 1
+            }
+            
+            print("health \(health)")
+            healthLabel.text = "Health: \(health)"
+            
+            isFirstCollision = false
         }
+    }
+    func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
+        // Contact has ended
+        isFirstCollision = true
     }
     
     

@@ -13,10 +13,12 @@
 		584A12542A1B072600E34CA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 584A12522A1B072600E34CA1 /* Main.storyboard */; };
 		584A12562A1B072700E34CA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584A12552A1B072700E34CA1 /* Assets.xcassets */; };
 		584A12592A1B072700E34CA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 584A12572A1B072700E34CA1 /* LaunchScreen.storyboard */; };
+		58765A462A1F1D0400B2AE26 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58765A452A1F1D0400B2AE26 /* HomeViewController.swift */; };
+		58765A492A1F66BA00B2AE26 /* scream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 58765A482A1F66BA00B2AE26 /* scream.mp3 */; };
 		589787032A1C251900C52AC8 /* VectorOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589787022A1C251900C52AC8 /* VectorOperations.swift */; };
 		58F47BC82A1ECD00007C1EDA /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58F47BC72A1ECD00007C1EDA /* jump.wav */; };
 		58F47BCA2A1F04CA007C1EDA /* BackgroundMusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58F47BC92A1F04CA007C1EDA /* BackgroundMusic.wav */; };
-		58F47BCE2A1F0726007C1EDA /* scream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 58F47BCD2A1F0726007C1EDA /* scream.mp3 */; };
+		58F47BD02A1F1822007C1EDA /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F47BCF2A1F1822007C1EDA /* Homepage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,10 +29,13 @@
 		584A12532A1B072600E34CA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		584A12552A1B072700E34CA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		584A12582A1B072700E34CA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		58765A452A1F1D0400B2AE26 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		58765A472A1F22E300B2AE26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		58765A482A1F66BA00B2AE26 /* scream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scream.mp3; sourceTree = "<group>"; };
 		589787022A1C251900C52AC8 /* VectorOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorOperations.swift; sourceTree = "<group>"; };
 		58F47BC72A1ECD00007C1EDA /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 		58F47BC92A1F04CA007C1EDA /* BackgroundMusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BackgroundMusic.wav; sourceTree = "<group>"; };
-		58F47BCD2A1F0726007C1EDA /* scream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scream.mp3; sourceTree = "<group>"; };
+		58F47BCF2A1F1822007C1EDA /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +68,7 @@
 		584A124B2A1B072600E34CA1 /* hidenseek */ = {
 			isa = PBXGroup;
 			children = (
+				58765A472A1F22E300B2AE26 /* Info.plist */,
 				58F47BC62A1ECCEA007C1EDA /* sounds */,
 				589787022A1C251900C52AC8 /* VectorOperations.swift */,
 				584A124C2A1B072600E34CA1 /* AppDelegate.swift */,
@@ -71,6 +77,8 @@
 				584A12522A1B072600E34CA1 /* Main.storyboard */,
 				584A12552A1B072700E34CA1 /* Assets.xcassets */,
 				584A12572A1B072700E34CA1 /* LaunchScreen.storyboard */,
+				58F47BCF2A1F1822007C1EDA /* Homepage.swift */,
+				58765A452A1F1D0400B2AE26 /* HomeViewController.swift */,
 			);
 			path = hidenseek;
 			sourceTree = "<group>";
@@ -79,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				58F47BC72A1ECD00007C1EDA /* jump.wav */,
-				58F47BCD2A1F0726007C1EDA /* scream.mp3 */,
+				58765A482A1F66BA00B2AE26 /* scream.mp3 */,
 				58F47BC92A1F04CA007C1EDA /* BackgroundMusic.wav */,
 			);
 			path = sounds;
@@ -146,7 +154,7 @@
 				58F47BCA2A1F04CA007C1EDA /* BackgroundMusic.wav in Resources */,
 				58F47BC82A1ECD00007C1EDA /* jump.wav in Resources */,
 				584A124F2A1B072600E34CA1 /* art.scnassets in Resources */,
-				58F47BCE2A1F0726007C1EDA /* scream.mp3 in Resources */,
+				58765A492A1F66BA00B2AE26 /* scream.mp3 in Resources */,
 				584A12592A1B072700E34CA1 /* LaunchScreen.storyboard in Resources */,
 				584A12562A1B072700E34CA1 /* Assets.xcassets in Resources */,
 				584A12542A1B072600E34CA1 /* Main.storyboard in Resources */,
@@ -160,9 +168,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58765A462A1F1D0400B2AE26 /* HomeViewController.swift in Sources */,
 				589787032A1C251900C52AC8 /* VectorOperations.swift in Sources */,
 				584A12512A1B072600E34CA1 /* GameViewController.swift in Sources */,
 				584A124D2A1B072600E34CA1 /* AppDelegate.swift in Sources */,
+				58F47BD02A1F1822007C1EDA /* Homepage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +321,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BJZP96946W;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = hidenseek/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -338,6 +349,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BJZP96946W;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = hidenseek/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
