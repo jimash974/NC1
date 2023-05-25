@@ -14,6 +14,7 @@
 		584A12562A1B072700E34CA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584A12552A1B072700E34CA1 /* Assets.xcassets */; };
 		584A12592A1B072700E34CA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 584A12572A1B072700E34CA1 /* LaunchScreen.storyboard */; };
 		589787032A1C251900C52AC8 /* VectorOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589787022A1C251900C52AC8 /* VectorOperations.swift */; };
+		58F47BC82A1ECD00007C1EDA /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58F47BC72A1ECD00007C1EDA /* jump.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		584A12552A1B072700E34CA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		584A12582A1B072700E34CA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		589787022A1C251900C52AC8 /* VectorOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorOperations.swift; sourceTree = "<group>"; };
+		58F47BC72A1ECD00007C1EDA /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		584A124B2A1B072600E34CA1 /* hidenseek */ = {
 			isa = PBXGroup;
 			children = (
+				58F47BC62A1ECCEA007C1EDA /* sounds */,
 				589787022A1C251900C52AC8 /* VectorOperations.swift */,
 				584A124C2A1B072600E34CA1 /* AppDelegate.swift */,
 				584A124E2A1B072600E34CA1 /* art.scnassets */,
@@ -66,6 +69,14 @@
 				584A12572A1B072700E34CA1 /* LaunchScreen.storyboard */,
 			);
 			path = hidenseek;
+			sourceTree = "<group>";
+		};
+		58F47BC62A1ECCEA007C1EDA /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				58F47BC72A1ECD00007C1EDA /* jump.wav */,
+			);
+			path = sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +137,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58F47BC82A1ECD00007C1EDA /* jump.wav in Resources */,
 				584A124F2A1B072600E34CA1 /* art.scnassets in Resources */,
 				584A12592A1B072700E34CA1 /* LaunchScreen.storyboard in Resources */,
 				584A12562A1B072700E34CA1 /* Assets.xcassets in Resources */,
@@ -295,8 +307,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,8 +334,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
