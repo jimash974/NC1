@@ -15,6 +15,8 @@
 		584A12592A1B072700E34CA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 584A12572A1B072700E34CA1 /* LaunchScreen.storyboard */; };
 		589787032A1C251900C52AC8 /* VectorOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589787022A1C251900C52AC8 /* VectorOperations.swift */; };
 		58F47BC82A1ECD00007C1EDA /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58F47BC72A1ECD00007C1EDA /* jump.wav */; };
+		58F47BCA2A1F04CA007C1EDA /* BackgroundMusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = 58F47BC92A1F04CA007C1EDA /* BackgroundMusic.wav */; };
+		58F47BCE2A1F0726007C1EDA /* scream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 58F47BCD2A1F0726007C1EDA /* scream.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		584A12582A1B072700E34CA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		589787022A1C251900C52AC8 /* VectorOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorOperations.swift; sourceTree = "<group>"; };
 		58F47BC72A1ECD00007C1EDA /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
+		58F47BC92A1F04CA007C1EDA /* BackgroundMusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BackgroundMusic.wav; sourceTree = "<group>"; };
+		58F47BCD2A1F0726007C1EDA /* scream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scream.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				58F47BC72A1ECD00007C1EDA /* jump.wav */,
+				58F47BCD2A1F0726007C1EDA /* scream.mp3 */,
+				58F47BC92A1F04CA007C1EDA /* BackgroundMusic.wav */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -137,8 +143,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58F47BCA2A1F04CA007C1EDA /* BackgroundMusic.wav in Resources */,
 				58F47BC82A1ECD00007C1EDA /* jump.wav in Resources */,
 				584A124F2A1B072600E34CA1 /* art.scnassets in Resources */,
+				58F47BCE2A1F0726007C1EDA /* scream.mp3 in Resources */,
 				584A12592A1B072700E34CA1 /* LaunchScreen.storyboard in Resources */,
 				584A12562A1B072700E34CA1 /* Assets.xcassets in Resources */,
 				584A12542A1B072600E34CA1 /* Main.storyboard in Resources */,
