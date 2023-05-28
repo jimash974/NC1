@@ -42,12 +42,6 @@ class GameViewController: UIViewController {
     
     var scoreLabel = SKLabelNode(text: "Score: 0")
     var score = 0
-//    {
-//        didSet {
-            // Update the score label text
-//            scoreLabel.text = "Score: \(score)"
-//        }
-//    }
     
     var endText: SCNNode!
 
@@ -67,9 +61,17 @@ class GameViewController: UIViewController {
         sceneView.delegate = self
 //        scene.physicsWorld.contactDelegate = self
         setUpLabel()
+        addButton()
+        
+        for gestureRecognizer in sceneView.gestureRecognizers ?? [] {
+            if let tapGestureRecognizer = gestureRecognizer as? UITapGestureRecognizer,
+               tapGestureRecognizer.numberOfTapsRequired == 2 {
+                sceneView.removeGestureRecognizer(tapGestureRecognizer)
+            }
+        }
     }
-
     
+
     func setUpLabel(){
         // Create a SpriteKit overlay for UI elements
         let overlayScene = SKScene(size: sceneView.bounds.size)
@@ -101,7 +103,7 @@ class GameViewController: UIViewController {
         sceneView.cameraControlConfiguration.rotationSensitivity = 0.6
 
         scene = SCNScene(named: "art.scnassets/mainScene.scn")
-        scene.lightingEnvironment.intensity = -1.5
+        scene.lightingEnvironment.intensity = -2.5
         
         sceneView.scene = scene
         
@@ -114,11 +116,6 @@ class GameViewController: UIViewController {
         
         scene.physicsWorld.contactDelegate = self
 //        sceneView.debugOptions = [.showPhysicsShapes]
-        
-
-        
-
-
     }
     
     func setUpNodes(){
@@ -148,7 +145,6 @@ class GameViewController: UIViewController {
 
         let musicPlayer = SCNAudioPlayer(source: backgroundMusic)
         scene.rootNode.addAudioPlayer(musicPlayer)
-
     }
     
     @objc func sceneViewTapped(recognizer:UITapGestureRecognizer){
@@ -161,7 +157,7 @@ class GameViewController: UIViewController {
             if let node = result?.node{
 //                print("\(node.parent?.name)")
 //                print("Ghost name \(ghost.parent?.name)")
-//                print("Ghost \(ghost.parent?.position)")
+                print("Ghost \(ghost.parent?.position)")
                 print("Score : \(score)")
 
 //                print("Physicsc \(ghost?.physicsBody)")
@@ -177,15 +173,21 @@ class GameViewController: UIViewController {
         }
     }
     
-    @objc func playAgainButtonPressed() {
-        // Code to restart or reset your game
-        // For example, you can reset game variables and reload the game scene
-        print("restart")
-        setUpScene()
-        setUpNodes()
-        score = 0
-        health = 3
+    func addButton(){
+        playAgainButton = UIButton(type: .system)
+        playAgainButton.setTitle("Back to Home", for: .normal)
+        playAgainButton.setTitleColor(.white, for: .normal)
+        playAgainButton.backgroundColor = UIColor.gray
+        playAgainButton.layer.opacity = 0.8
+        playAgainButton.addTarget(self, action: #selector(playAgainButtonPressed), for: .touchUpInside)
+        playAgainButton.frame = CGRect(x: 730, y: 50, width: 100, height: 40)
+        self.view.addSubview(playAgainButton)
     }
+    
+    @objc func playAgainButtonPressed() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -198,24 +200,12 @@ extension GameViewController: SCNSceneRendererDelegate {
         guard let pov = sceneView.pointOfView else {
             return
         }
-        
         spotLightNode.position = pov.position
         spotLightNode.orientation = pov.orientation
         spotLightNode.eulerAngles = pov.eulerAngles
         
-        if score == 1 {
-//            endText.isHidden = false
-//            endGameNotif.send(true)
-//            print("win")
-            playAgainButton = UIButton(type: .system)
-            playAgainButton.setTitle("Play Again", for: .normal)
-            playAgainButton.setTitleColor(.white, for: .normal)
-            playAgainButton.backgroundColor = UIColor.gray
-            playAgainButton.layer.opacity = 0.8
-            playAgainButton.addTarget(self, action: #selector(playAgainButtonPressed), for: .touchUpInside)
-            playAgainButton.frame = CGRect(x: 390, y: 300, width: 100, height: 40)
-            self.view.addSubview(playAgainButton)
-            
+        
+        if score == 10 {
             // Create a 3D text geometry
             let textGeometry = SCNText(string: "You Win", extrusionDepth: 1.0)
 
@@ -255,6 +245,10 @@ extension GameViewController: SCNSceneRendererDelegate {
             ghost.physicsBody = .none
         }
     }
+    
+    
+
+    
 }
 
 extension GameViewController : SCNPhysicsContactDelegate {
@@ -297,16 +291,10 @@ extension GameViewController : SCNPhysicsContactDelegate {
             
             if(ghostNode?.position.z == 4){
                 z = -4
-//                let moveAction = SCNAction.move(to: SCNVector3(x: 0, y: 0, z: (ghostNode?.position.z)! * -1), duration: 0)
-//                let action = SCNAction.sequence([hidePhysicsc,moveAction, waitAction, showPhysicsc])
-//                ghostNode?.runAction(action)
-//                print("Ghost hidden \(ghostScary.isHidden)")
 
             }else if ghostNode?.position.z == -4{
                 x = 5
-//                let moveAction = SCNAction.move(to: SCNVector3(x: -3, y: 0, z: 0), duration: 0)
-//                let action = SCNAction.sequence([waitAction,moveAction])
-//                ghostNode?.runAction(action)
+
 
             }else if ghostNode?.position.x == 5{
 //                let moveAction = SCNAction.move(to: SCNVector3(x: 5, y: 0, z: 0), duration: 0)
@@ -363,21 +351,6 @@ extension GameViewController : SCNPhysicsContactDelegate {
         // Contact has ended
         isFirstCollision = true
     }
-    
-    
-    
-    
-//    func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
-//        var ghostNode:SCNNode?
-//
-//        let nodeA = contact.nodeA
-//        let nodeB = contact.nodeB
-//
-//        if(nodeA.name != "ghost" || nodeB.name != "ghost"){
-//         ghostNode = nil
-//        }
-//    }
-    
 }
 
 
