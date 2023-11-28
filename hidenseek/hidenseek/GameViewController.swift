@@ -126,7 +126,6 @@ class GameViewController: UIViewController {
         ghostScary.isHidden = true
         endText = scene.rootNode.childNode(withName: "endText", recursively: true)
         endText.isHidden = true
-        
     }
     
     func setupSounds() {
